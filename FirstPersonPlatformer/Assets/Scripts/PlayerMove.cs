@@ -6,6 +6,7 @@ public class PlayerMove : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
+    public float speedIncreaseSpeed;
 
     public float groundDrag;
 
@@ -90,7 +91,7 @@ public class PlayerMove : MonoBehaviour
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        if(flatVel.magnitude > moveSpeed)
+        if(flatVel.magnitude > moveSpeed)//caps the speed at move speed
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
@@ -100,7 +101,7 @@ public class PlayerMove : MonoBehaviour
     {
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);//resets the velocity
 
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);//add force up
     }
     private void ResetJump()
     {
