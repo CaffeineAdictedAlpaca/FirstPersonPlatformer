@@ -72,7 +72,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speedText.text = ("Speed: " + rb.velocity.magnitude.ToString("F1"));
+        //speedText.text = ("Speed: " + rb.velocity.magnitude.ToString("F1"));
 
         grounded = Physics.Raycast(transform.position, Vector2.down, playerHeight * 0.5f + 0.2f, whatIsGround);//grounded is true if the raycast looking for whatIsGround layer is hitting ground
 
