@@ -441,19 +441,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f6bc2d40090254f9bec2fcefaecb9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  speedIncreaseSpeed: 1
+  walkSpeed: 6
+  sprintSpeed: 10
   groundDrag: 5
   jumpForce: 10
   jumpCooldown: 0.25
   airMultiplier: 0.2
   readyToJump: 0
+  crouchSpeed: 3.5
+  crouchYScale: 0.5
   jumpKey: 32
+  sprintKey: 304
+  crouchKey: 306
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
   orientation: {fileID: 652870767}
+  state: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,7 +826,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8b1fb39f919f7ae418badbf4c0c2a4ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -860,8 +865,8 @@ Transform:
   m_GameObject: {fileID: 991345402}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03914833, y: -1.6772623, z: 1.4017487}
-  m_LocalScale: {x: 26.121, y: 1.2458, z: 31.781}
+  m_LocalPosition: {x: -0.03914833, y: -1.6772623, z: 1.4017}
+  m_LocalScale: {x: 62.468372, y: 1.2458, z: 73.865395}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -965,7 +970,7 @@ Transform:
   m_GameObject: {fileID: 1138344611}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.360219, y: -0.87372017, z: 10.33}
+  m_LocalPosition: {x: 1.360219, y: 0.73, z: 10.33}
   m_LocalScale: {x: 3.843, y: 1, z: 6.2446}
   m_ConstrainProportionsScale: 0
   m_Children: []
