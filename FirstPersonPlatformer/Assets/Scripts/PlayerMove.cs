@@ -7,6 +7,7 @@ public class PlayerMove : MonoBehaviour
 {
 
     public TextMeshProUGUI speedText;
+    public TextMeshProUGUI stateText;
 
     [Header("Movement")]
     private float moveSpeed;
@@ -72,7 +73,8 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //speedText.text = ("Speed: " + rb.velocity.magnitude.ToString("F1"));
+        stateText.text = (state.ToString());
+        speedText.text = ("Speed: " + rb.velocity.magnitude.ToString("F1"));
 
         grounded = Physics.Raycast(transform.position, Vector2.down, playerHeight * 0.5f + 0.2f, whatIsGround);//grounded is true if the raycast looking for whatIsGround layer is hitting ground
 
@@ -155,7 +157,7 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-        if (grounded)
+        else if (grounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
         }
@@ -174,7 +176,7 @@ public class PlayerMove : MonoBehaviour
             {
                 rb.velocity = rb.velocity.normalized * moveSpeed;
             }
-            
+  
         }
         else
         {
