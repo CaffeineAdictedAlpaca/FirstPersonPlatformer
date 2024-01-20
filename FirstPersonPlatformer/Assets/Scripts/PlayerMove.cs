@@ -13,6 +13,7 @@ public class PlayerMove : MonoBehaviour
     private float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
+    public float wallrunSpeed;
 
     public float groundDrag;
 
@@ -56,9 +57,12 @@ public class PlayerMove : MonoBehaviour
     {
         walking,
         sprinting,
+        wallrunning,
         crouching,
         air
     }
+
+    public bool wallrunning;
     // Start is called before the first frame update
     void Start()
     {
@@ -122,6 +126,13 @@ public class PlayerMove : MonoBehaviour
     }
     private void StateHandler()
     {
+        if(wallrunning)
+        {
+            print("test");
+            state = MovementState.wallrunning;
+            moveSpeed = wallrunSpeed;
+        }
+
         if (Input.GetKey(crouchKey))
         {
             state = MovementState.crouching;
