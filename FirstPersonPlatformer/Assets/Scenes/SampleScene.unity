@@ -298,7 +298,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346643227}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 946f6d8aae6b9ca449b7bb521782e79a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -648,7 +648,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!4 &700389795
 Transform:
@@ -1063,7 +1063,7 @@ MonoBehaviour:
   m_text: 'State:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1816,6 +1816,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 705507995}
   - {fileID: 1158298176}
+  - {fileID: 895058554}
   - {fileID: 700389795}
   - {fileID: 991345406}
   - {fileID: 1138344615}
@@ -1824,5 +1825,4 @@ SceneRoots:
   - {fileID: 447599632}
   - {fileID: 819747142}
   - {fileID: 496472465}
-  - {fileID: 895058554}
   - {fileID: 1648795514}
