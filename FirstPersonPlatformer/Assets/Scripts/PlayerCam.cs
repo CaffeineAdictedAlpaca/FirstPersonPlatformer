@@ -51,7 +51,7 @@ public class PlayerCam : MonoBehaviour
         }
         if (targetFov < fov)
         {
-            fov -= fovSpeed * Time.deltaTime;
+            fov -= (fovSpeed * Time.deltaTime) / 4;
         }
     }
 
