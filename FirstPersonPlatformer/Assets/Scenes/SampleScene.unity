@@ -868,6 +868,7 @@ GameObject:
   - component: {fileID: 700389794}
   - component: {fileID: 700389796}
   - component: {fileID: 700389797}
+  - component: {fileID: 700389798}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -934,10 +935,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedText: {fileID: 119458361}
   stateText: {fileID: 941176976}
-  walkSpeed: 6
+  walkSpeed: 7
   sprintSpeed: 10
   wallrunSpeed: 8.5
-  groundDrag: 5
+  slideSpeed: 30
+  speedIncreaseMultiplier: 1.5
+  slopeIncreaseMultiplier: 2.5
+  groundDrag: 4
   jumpForce: 7
   jumpCooldown: 0.25
   airMultiplier: 0.2
@@ -954,6 +958,7 @@ MonoBehaviour:
   maxSlopeAngle: 40
   orientation: {fileID: 652870767}
   state: 0
+  sliding: 0
   wallrunning: 0
 --- !u!114 &700389797
 MonoBehaviour:
@@ -981,6 +986,24 @@ MonoBehaviour:
   wallCheckDistance: 0.7
   minJumpHight: 2
   oriantation: {fileID: 652870767}
+--- !u!114 &700389798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700389793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c5a0306208b554287af4f1d8fec805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 652870767}
+  playerObj: {fileID: 346643228}
+  maxSlideTime: 0.75
+  slideForce: 200
+  slideYScale: 0.5
+  slideKey: 99
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2539,8 +2562,8 @@ Transform:
   m_GameObject: {fileID: 1663699784}
   serializedVersion: 2
   m_LocalRotation: {x: -0.29342178, y: -0, z: -0, w: 0.95598316}
-  m_LocalPosition: {x: -0.14999962, y: 2.79, z: 3.1100006}
-  m_LocalScale: {x: 6.5684557, y: 1, z: 17.30441}
+  m_LocalPosition: {x: -0.14999962, y: 26.01, z: 37.38}
+  m_LocalScale: {x: 6.5684557, y: 1, z: 100.636536}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 793843444}

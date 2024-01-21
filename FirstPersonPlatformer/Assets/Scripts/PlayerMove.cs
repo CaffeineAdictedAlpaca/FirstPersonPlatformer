@@ -14,6 +14,13 @@ public class PlayerMove : MonoBehaviour
     public float walkSpeed;
     public float sprintSpeed;
     public float wallrunSpeed;
+    public float slideSpeed;
+
+    private float desiredMoveSpeed;
+    private float lastDesiredMoveSpeed;
+
+    public float speedIncreaseMultiplier;
+    public float slopeIncreaseMultiplier;
 
     public float groundDrag;
 
@@ -57,11 +64,13 @@ public class PlayerMove : MonoBehaviour
     {
         walking,
         sprinting,
+        sliding,
         wallrunning,
         crouching,
         air
     }
-
+    
+    public bool sliding;
     public bool wallrunning;
     // Start is called before the first frame update
     void Start()
@@ -126,33 +135,85 @@ public class PlayerMove : MonoBehaviour
     }
     private void StateHandler()
     {
-        if(wallrunning)
+        if(sliding)
         {
-            print("test");
-            state = MovementState.wallrunning;
-            moveSpeed = wallrunSpeed;
+            state = MovementState.sliding;
+
+            if(OnSlope() && rb.velocity.y < 0.1f)
+            {
+                desiredMoveSpeed = slideSpeed;
+            }
+            else
+            {
+                desiredMoveSpeed = sprintSpeed;
+            }
         }
 
-        if (Input.GetKey(crouchKey))
+        else if(wallrunning)
+        {
+            state = MovementState.wallrunning;
+            desiredMoveSpeed = wallrunSpeed;
+        }
+
+        else if (Input.GetKey(crouchKey))
         {
             state = MovementState.crouching;
-            moveSpeed = crouchSpeed;
+            desiredMoveSpeed = crouchSpeed;
         }
 
         else if (grounded && Input.GetKey(sprintKey))
         {
             state = MovementState.sprinting;
-            moveSpeed = sprintSpeed;
+            desiredMoveSpeed = sprintSpeed;
         }
         else if (grounded)
         {
             state = MovementState.walking;
-            moveSpeed = walkSpeed;
+            desiredMoveSpeed = walkSpeed;
         }
         else
         {
             state = MovementState.air;
         }
+
+        if(Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && moveSpeed != 0)
+        {
+            StopAllCoroutines();
+            StartCoroutine(SmoothlyLerpMoveSpeed());
+        }
+        else
+        {
+            moveSpeed = desiredMoveSpeed;
+        }
+
+        lastDesiredMoveSpeed = desiredMoveSpeed;
+    }
+
+    private IEnumerator SmoothlyLerpMoveSpeed()
+    {
+        float time = 0;
+        float difference = Mathf.Abs(desiredMoveSpeed - moveSpeed);
+        float startValue = moveSpeed;
+
+        while (time < difference)//smoothly lerp movement speed to desired movement speed
+        {
+            moveSpeed = Mathf.Lerp(startValue, desiredMoveSpeed, time / difference);
+
+            if (OnSlope())
+            {
+                float slopeAngle = Vector3.Angle(Vector3.up, slopeHit.normal);
+                float slopeAngleIncrease = 1 + (slopeAngle / 90f);
+
+                time += Time.deltaTime * speedIncreaseMultiplier * slopeIncreaseMultiplier * slopeAngleIncrease;
+            }
+            else
+            {
+                time += Time.deltaTime * speedIncreaseMultiplier;
+            }
+            yield return null;
+        }
+
+        moveSpeed = desiredMoveSpeed;
     }
     private void movePlayer()
     {
@@ -160,7 +221,7 @@ public class PlayerMove : MonoBehaviour
 
         if (OnSlope() && !exitingSlope)
         {
-            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);//ands a force along the slope acording to the slope angle
+            rb.AddForce(GetSlopeMoveDirection(moveDirection) * moveSpeed * 20f, ForceMode.Force);//ands a force along the slope acording to the slope angle
 
             if (rb.velocity.y > 0 )
             {
@@ -215,7 +276,7 @@ public class PlayerMove : MonoBehaviour
 
         exitingSlope = false;
     }
-    private bool OnSlope()
+    public bool OnSlope()
     {
         if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))//makes a raykast to get information of the fround the player is standing on
         {
@@ -226,8 +287,8 @@ public class PlayerMove : MonoBehaviour
         return false;
     }
 
-    private Vector3 GetSlopeMoveDirection()
+    public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
-        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;//projects the normal move direction onto the slope
+        return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;//projects the normal move direction onto the slope
     }
 }
