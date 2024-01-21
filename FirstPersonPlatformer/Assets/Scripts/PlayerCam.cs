@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class PlayerCam : MonoBehaviour
 {
+    public float fov;
+    public float fovSpeed;
+    public float targetFov;
+
     public float sensX;
     public float sensY;
 
@@ -15,6 +19,8 @@ public class PlayerCam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fov = GetComponent<Camera>().fieldOfView;
+        targetFov = GetComponent<Camera>().fieldOfView;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -32,5 +38,26 @@ public class PlayerCam : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+
+        GetComponent<Camera>().fieldOfView = fov;
+        if (targetFov > fov)
+        {
+            fov += fovSpeed * Time.deltaTime;
+        }
+        if (targetFov < fov)
+        {
+            fov -= fovSpeed * Time.deltaTime;
+        }
     }
+
+    public void DoFov(float newTargetFov)
+    {
+        targetFov = newTargetFov;
+    }
+    
+    /*public float DoTilt(float zTilt)
+    {
+        transform.rotation.z = zTilt
+    }
+    */
 }

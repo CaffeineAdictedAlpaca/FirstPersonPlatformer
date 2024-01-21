@@ -42,6 +42,7 @@ public class WallRunning : MonoBehaviour
 
     [Header("References")]
     public Transform oriantation;
+    public PlayerCam cam;
     private PlayerMove pm;
     private Rigidbody rb;
 
@@ -140,11 +141,14 @@ public class WallRunning : MonoBehaviour
     }
     private void StartWallrun()
     {
+        cam.DoFov(70f);
+
         pm.wallrunning = true;
 
         wallrunTimer = maxWallrunTime;
 
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
     }
     private void WallrunningMovement()
     {
@@ -179,11 +183,15 @@ public class WallRunning : MonoBehaviour
         {
             rb.AddForce(transform.up * gravityCounterForce, ForceMode.Force);
         }
+
         
+
     }
     private void StopWallrun()
     {
         pm.wallrunning = false;
+
+        cam.DoFov(60f);
     }
 
     private void WallJump()
