@@ -1408,7 +1408,7 @@ MonoBehaviour:
   upwardsRunKey: 0
   downwardsRunKey: 0
   wallCheckDistance: 0.7
-  minJumpHight: 2
+  minJumpHight: 1.6
   exitWallTime: 0.2
   useGravity: 1
   gravityCounterForce: 4
