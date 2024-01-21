@@ -37,7 +37,7 @@ public class Sliding : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if(Input.GetKeyDown(slideKey) && (horizontalInput != 0 || verticalInput != 0))//start slide if entering slide key while moving
+        if(Input.GetKeyDown(slideKey) && (horizontalInput != 0 || verticalInput != 0) && pm.grounded)//start slide if entering slide key while moving
         {
             StartSlide();
         }
