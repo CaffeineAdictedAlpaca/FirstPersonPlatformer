@@ -192,6 +192,7 @@ public class WallRunning : MonoBehaviour
         pm.wallrunning = false;
 
         cam.DoFov(60f);
+
     }
 
     private void WallJump()

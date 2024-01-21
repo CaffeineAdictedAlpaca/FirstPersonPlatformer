@@ -5,13 +5,18 @@ using UnityEngine;
 
 public class PlayerCam : MonoBehaviour
 {
-    public float fov;
+    private float fov;
     public float fovSpeed;
-    public float targetFov;
+    private float targetFov;
+
+    private float tilt;
+    public float tiltSpeed;
+    private float targetTilt;
 
     public float sensX;
     public float sensY;
 
+    public Transform camHolder;
     public Transform orientation;
 
     float xRotation;
@@ -54,10 +59,4 @@ public class PlayerCam : MonoBehaviour
     {
         targetFov = newTargetFov;
     }
-    
-    /*public float DoTilt(float zTilt)
-    {
-        transform.rotation.z = zTilt
-    }
-    */
 }

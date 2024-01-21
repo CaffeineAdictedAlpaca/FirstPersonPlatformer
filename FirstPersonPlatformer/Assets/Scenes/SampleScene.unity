@@ -2327,11 +2327,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5532010d37c19244184df1ed494cd7ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fov: 0
   fovSpeed: 60
-  targetFov: 0
+  tiltSpeed: 20
   sensX: 400
   sensY: 400
+  camHolder: {fileID: 1158298176}
   orientation: {fileID: 652870767}
 --- !u!1 &991345402
 GameObject:
