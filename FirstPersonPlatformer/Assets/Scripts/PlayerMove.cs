@@ -238,7 +238,11 @@ public class PlayerMove : MonoBehaviour
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }
 
-        rb.useGravity = !OnSlope();//disables gravity if player is on a slope, so the player dose not slide while on a slope
+        if(!wallrunning)
+        {
+            rb.useGravity = !OnSlope();//disables gravity if player is on a slope, so the player dose not slide while on a slope
+        }
+
     }
     private void SpeedControl()
     {
