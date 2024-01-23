@@ -14,6 +14,7 @@ public class Sliding : MonoBehaviour
     public float maxSlideTime;
     public float slideForce;
     private float slideTimer;
+    private bool airSlide;
 
     public float slideYScale;
     private float startYScale;
@@ -41,6 +42,20 @@ public class Sliding : MonoBehaviour
         {
             StartSlide();
         }
+        else if (airSlide == true && pm.grounded && (horizontalInput != 0 || verticalInput != 0))
+        {
+            StartSlide();
+        }
+
+        if (Input.GetKey(slideKey) && pm.grounded == false)
+        {
+            airSlide = true;
+        }
+        else
+        {
+            airSlide = false;
+        }
+
         if(Input.GetKeyUp(slideKey) && pm.sliding)//stops slide if let go of slide key and is sliding
         {
             StopSlide();
@@ -55,6 +70,7 @@ public class Sliding : MonoBehaviour
     }
     private void StartSlide()
     {
+        airSlide = false;
         pm.sliding = true;
 
         playerObj.localScale = new Vector3(playerObj.localScale.x, slideYScale, playerObj.localScale.z);//makes player short
