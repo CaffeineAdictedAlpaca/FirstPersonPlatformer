@@ -21,6 +21,7 @@ public class StartScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            timer = 0;
             timerOn = true;
         }
     }

@@ -254,6 +254,7 @@ public class PlayerMove : MonoBehaviour
             }
   
         }
+        
         else
         {
             Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
@@ -264,7 +265,7 @@ public class PlayerMove : MonoBehaviour
                 rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
             }
         }
-
+        
     }
     private void Jump()
     {
