@@ -15,7 +15,7 @@ public class StartScript : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
-        timeText.text = timer.ToString("F2");
+        timeText.text = timer.ToString("F3");
     }
     private void OnTriggerEnter(Collider other)
     {
